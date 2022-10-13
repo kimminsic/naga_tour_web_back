@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -28,4 +29,10 @@ public class wishService {
         w.setContenttypeid(contenttypeid);
         wishRepository.save(w);
     }
+
+    public List<Wishlist> findWIshlistItem(Integer contentid) {
+       return wishRepository.findBycontentid(contentid);
+    }
+
+
 }
