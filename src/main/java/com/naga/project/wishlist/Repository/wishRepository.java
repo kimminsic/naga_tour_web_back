@@ -1,9 +1,8 @@
-package com.naga.project.Repository;
+package com.naga.project.wishlist.Repository;
 
-import com.naga.project.DAO.Wishlist;
+import com.naga.project.wishlist.DAO.Wishlist;
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import javax.transaction.TransactionScoped;
 import javax.transaction.Transactional;
 import java.util.List;
 import java.util.Optional;

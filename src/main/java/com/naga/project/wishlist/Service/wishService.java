@@ -1,13 +1,11 @@
-package com.naga.project.Service;
+package com.naga.project.wishlist.Service;
 
-import com.naga.project.DAO.Wishlist;
-import com.naga.project.Repository.wishRepository;
+import com.naga.project.wishlist.DAO.Wishlist;
+import com.naga.project.wishlist.Repository.wishRepository;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @AllArgsConstructor

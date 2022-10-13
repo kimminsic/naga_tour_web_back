@@ -1,4 +1,4 @@
-package com.naga.project.DAO;
+package com.naga.project.wishlist.DAO;
 import lombok.Getter;
 import lombok.Setter;
 import javax.persistence.*;
