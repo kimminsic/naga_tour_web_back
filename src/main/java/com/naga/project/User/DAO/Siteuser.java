@@ -11,7 +11,7 @@ import javax.persistence.Id;
 @Getter
 @Setter
 @Entity
-public class User {
+public class Siteuser {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
@@ -23,4 +23,8 @@ public class User {
     private String password;
 
     private String email;
+
+    private String tel;
+
+
 }

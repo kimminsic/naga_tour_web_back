@@ -1,9 +1,12 @@
 package com.naga.project.User.Service;
-import com.naga.project.User.DAO.User;
+import com.naga.project.User.DAO.Siteuser;
 import com.naga.project.User.Repository.UserRepository;
 import lombok.AllArgsConstructor;
+import org.apache.catalina.User;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @AllArgsConstructor
@@ -11,16 +14,36 @@ public class UserService {
 
     private final UserRepository userRepository;
 
-    public List<User> getList() {
+    public List<Siteuser> getList() {
         return userRepository.findAll();
     }
 
-    public void createUser(String userid, String username, String password, String email) {
-        User U = new User();
+    public void createUser(String userid, String username, String password, String email, String tel) {
+        Siteuser U = new Siteuser();
         U.setUserid(userid);
         U.setUsername(username);
-        U.setPassword(password);
+        BCryptPasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
+        U.setPassword(passwordEncoder.encode(password));
         U.setEmail(email);
+        U.setTel(tel);
         userRepository.save(U);
+    }
+
+    public boolean getPassword(String userid,String password){
+        BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
+        Optional<Siteuser> u =userRepository.findByUserid((userid));
+        return encoder.matches(password,u.get().getPassword());
+    }
+
+
+    public Optional<Siteuser> getUser(String userid, String password) {
+        BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
+        Optional<Siteuser> u = userRepository.findByUserid(userid);
+        if(getPassword(userid,password)){
+            return userRepository.findByUserid(userid);
+        }
+
+        return null;
+
     }
 }
