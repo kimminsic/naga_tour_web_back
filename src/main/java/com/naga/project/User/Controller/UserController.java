@@ -28,8 +28,8 @@ public class UserController {
 
 
     @GetMapping("/user/login")
-    public Optional<Siteuser> GetUser(@RequestParam String userid, @RequestParam String password) {
-        Optional<Siteuser> U = userService.getUser(userid,password);
+    public List<Siteuser> GetUser(@RequestParam String userid, @RequestParam String password) {
+        List<Siteuser> U = userService.getUser(userid,password);
         return U;
     }
 
