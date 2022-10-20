@@ -9,7 +9,7 @@ import java.util.Optional;
 
 
 public interface wishRepository extends JpaRepository<Wishlist, Integer> {
-    List<Wishlist> findBycontentid(Integer contentid);
+    List<Wishlist> findBycontentidAndUserId(Integer contentid,String userId);
 
     @Transactional
    Optional<Wishlist> deleteBycontentid(Integer contentid);
