@@ -20,8 +20,8 @@ public class wishController {
     }
 
     @GetMapping("/api/item")
-    public List<Wishlist> indexItem(@RequestParam Integer contentid){
-        return wishService.findWIshlistItem(contentid);
+    public List<Wishlist> indexItem(@RequestParam Integer contentid, @RequestParam String userId){
+        return wishService.findWIshlistItem(contentid,userId);
     }
 
     @GetMapping("/api/user/item")
@@ -31,7 +31,7 @@ public class wishController {
 
    @GetMapping("/api/create")
     public String create(@RequestParam String title,@RequestParam String addr1, @RequestParam String img, @RequestParam String tel, @RequestParam Integer contentid, @RequestParam Integer contenttypeid, @RequestParam String userId){
-        List<Wishlist> w = wishRepository.findBycontentid(contentid);
+        List<Wishlist> w = wishRepository.findBycontentidAndUserId(contentid,userId);
         if(w.isEmpty()) {
             wishService.create(title, addr1, img, tel, contentid, contenttypeid,userId);
             return "생성";
@@ -40,8 +40,8 @@ public class wishController {
     }
 
     @GetMapping("/api/delete")
-    public String deleteItem(@RequestParam Integer contentid){
-        List<Wishlist> w = wishRepository.findBycontentid(contentid);
+    public String deleteItem(@RequestParam Integer contentid, @RequestParam String userId){
+        List<Wishlist> w = wishRepository.findBycontentidAndUserId(contentid,userId);
         if(w.isEmpty()){
             return "존재하지 않습니다";
         }

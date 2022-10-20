@@ -30,8 +30,8 @@ public class wishService {
         wishRepository.save(w);
     }
 
-    public List<Wishlist> findWIshlistItem(Integer contentid) {
-       return wishRepository.findBycontentid(contentid);
+    public List<Wishlist> findWIshlistItem(Integer contentid, String userId) {
+       return wishRepository.findBycontentidAndUserId(contentid,userId);
     }
 
 
