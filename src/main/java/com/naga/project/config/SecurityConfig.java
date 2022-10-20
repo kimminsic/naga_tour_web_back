@@ -1,4 +1,4 @@
-package com.naga.project;
+package com.naga.project.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
