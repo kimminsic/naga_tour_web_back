@@ -24,11 +24,16 @@ public class wishController {
         return wishService.findWIshlistItem(contentid);
     }
 
+    @GetMapping("/api/user/item")
+    public List<Wishlist> indexUserItem(@RequestParam String userId){
+        return wishService.findUserItemList(userId);
+    }
+
    @GetMapping("/api/create")
-    public String create(@RequestParam String title,@RequestParam String addr1, @RequestParam String img, @RequestParam String tel, @RequestParam Integer contentid, @RequestParam Integer contenttypeid){
+    public String create(@RequestParam String title,@RequestParam String addr1, @RequestParam String img, @RequestParam String tel, @RequestParam Integer contentid, @RequestParam Integer contenttypeid, @RequestParam String userId){
         List<Wishlist> w = wishRepository.findBycontentid(contentid);
         if(w.isEmpty()) {
-            wishService.create(title, addr1, img, tel, contentid, contenttypeid);
+            wishService.create(title, addr1, img, tel, contentid, contenttypeid,userId);
             return "생성";
         }
         return "생성불가";

@@ -22,4 +22,6 @@ public class Wishlist {
     private Integer contentid;
 
     private Integer contenttypeid;
+
+    private String userId;
 }

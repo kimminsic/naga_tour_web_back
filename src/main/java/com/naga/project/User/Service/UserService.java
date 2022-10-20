@@ -31,14 +31,19 @@ public class UserService {
 
     public boolean getPassword(String userid,String password){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        Optional<Siteuser> u =userRepository.findByUserid((userid));
-        return encoder.matches(password,u.get().getPassword());
+        List<Siteuser> u = userRepository.findByUserid((userid));
+
+        return encoder.matches(password,u.get(0).getPassword());
+
     }
 
 
-    public Optional<Siteuser> getUser(String userid, String password) {
+    public List<Siteuser> getUser(String userid, String password) {
         BCryptPasswordEncoder encoder  = new BCryptPasswordEncoder();
-        Optional<Siteuser> u = userRepository.findByUserid(userid);
+        List<Siteuser> u = userRepository.findByUserid(userid);
+        if(u.size()==0){
+            return null;
+        }
         if(getPassword(userid,password)){
             return userRepository.findByUserid(userid);
         }
