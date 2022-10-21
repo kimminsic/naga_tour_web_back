@@ -15,21 +15,29 @@ public class UserController {
 
     private final UserService userService;
 
+    //유저리스트 조회
     @GetMapping("/user/list")
     public List<Siteuser> GetList(){
         return userService.getList();
     }
 
+    //유저 생성
     @GetMapping("/user/create")
     public String CreateUser(@RequestParam String userid , @RequestParam String username , @RequestParam String password , @RequestParam String email, @RequestParam String tel){
         userService.createUser(userid,username,password,email,tel);
         return "생성완료";
     }
 
+    //유저아이디값을 통한 리스트 조회
     @GetMapping("/user/getid")
     public List<Siteuser> GetUserId(@RequestParam String userid) {return userService.getId(userid);}
 
 
+    //유저이름을 통한 리스트 조회
+    @GetMapping("/user/getName")
+    public List<Siteuser> GetUserName(@RequestParam String username) { return userService.getUserName(username);}
+
+    // 유저 로그인
     @GetMapping("/user/login")
     public List<Siteuser> GetUser(@RequestParam String userid, @RequestParam String password) {
         List<Siteuser> U = userService.getUser(userid,password);
