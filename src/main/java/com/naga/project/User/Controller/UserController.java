@@ -26,6 +26,9 @@ public class UserController {
         return "생성완료";
     }
 
+    @GetMapping("/user/getid")
+    public List<Siteuser> GetUserId(@RequestParam String userid) {return userService.getId(userid);}
+
 
     @GetMapping("/user/login")
     public List<Siteuser> GetUser(@RequestParam String userid, @RequestParam String password) {
