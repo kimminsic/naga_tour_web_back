@@ -31,10 +31,15 @@ public class UserService {
 
     public boolean getPassword(String userid,String password){
         BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-        List<Siteuser> u = userRepository.findByUserid((userid));
+        List<Siteuser> u = userRepository.findByUserid(userid);
         System.out.println("암호화 비밀번호"+u.get(0).getPassword());
         System.out.println("입력된 비밀번호"+password);
-        return encoder.matches(password,u.get(0).getPassword());
+        if(u.size()!=0) {
+            return encoder.matches(password, u.get(0).getPassword());
+        }
+        else {
+            return false;
+        }
 
     }
 
@@ -42,7 +47,7 @@ public class UserService {
     public List<Siteuser> getUser(String userid, String password) {
 
         List<Siteuser> u = userRepository.findByUserid(userid);
-        System.out.println("상태"+getPassword(userid,password));
+
         if(u.size()==0){
             return null;
         }
@@ -52,11 +57,13 @@ public class UserService {
         else{
             return null;
         }
-
-
     }
 
     public List<Siteuser> getId(String userid) {
         return userRepository.findByUserid(userid);
+    }
+
+    public List<Siteuser> getUserName(String username) {
+        return userRepository.findByUsername(username);
     }
 }
