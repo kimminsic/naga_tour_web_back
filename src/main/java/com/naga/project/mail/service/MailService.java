@@ -12,7 +12,7 @@ import org.springframework.stereotype.Service;
 public class MailService {
     private JavaMailSender mailSender;
 
-    @Async
+
     public String sendMail(String email) {
         SimpleMailMessage message = new SimpleMailMessage();
         String code = RandomStringUtils.randomAlphanumeric(6);
