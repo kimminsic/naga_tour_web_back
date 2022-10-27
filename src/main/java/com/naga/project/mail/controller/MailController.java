@@ -17,7 +17,12 @@ public class MailController {
     @GetMapping("/mail")
     public String execMail(@RequestParam Map<String, String> email){
         return mailService.sendMail(email.get("email"));
-
-
     }
+
+    @GetMapping("/sendPw")
+    public String PwMail(@RequestParam Map<String, String> email,@RequestParam String userid){
+        return mailService.PwSend(email.get("email"),userid);
+    }
+
+
 }
