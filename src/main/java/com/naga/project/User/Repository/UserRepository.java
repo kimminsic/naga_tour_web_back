@@ -14,6 +14,10 @@ public interface UserRepository extends JpaRepository<Siteuser,Integer> {
 
     List<Siteuser>  findByUserid(String userid);
 
-
+    Optional<Siteuser> findByuserid(String userid);
     List<Siteuser> findByUsername(String username);
+
+    List<Siteuser> findByUseridAndUsernameAndEmailAndTel(String userid, String username, String email, String tel);
+
+
 }

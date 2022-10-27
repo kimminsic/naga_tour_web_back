@@ -66,4 +66,8 @@ public class UserService {
     public List<Siteuser> getUserName(String username) {
         return userRepository.findByUsername(username);
     }
+
+    public List<Siteuser> getUserInfo(String userid, String username, String email, String tel) {
+        return userRepository.findByUseridAndUsernameAndEmailAndTel(userid,username,email,tel);
+    }
 }

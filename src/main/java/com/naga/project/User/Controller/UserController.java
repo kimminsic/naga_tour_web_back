@@ -37,6 +37,13 @@ public class UserController {
     @GetMapping("/api/user/getName")
     public List<Siteuser> GetUserName(@RequestParam String username) { return userService.getUserName(username);}
 
+
+    //유저의 모든정보를 통한 조회
+    @GetMapping("/api/user/getUser")
+    public List<Siteuser> GetUserInfo(@RequestParam String userid, @RequestParam String username, @RequestParam String email, @RequestParam String tel){
+        return userService.getUserInfo(userid,username,email,tel);
+    }
+
     // 유저 로그인
     @GetMapping("/api/user/login")
     public List<Siteuser> GetUser(@RequestParam String userid, @RequestParam String password) {
